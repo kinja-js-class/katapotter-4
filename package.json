@@ -1,0 +1,15 @@
+{
+  "name": "katapotter-4",
+  "version": "0.0.0",
+  "description": "",
+  "dependencies": {
+    "gulp": "~3.9.0"
+  },
+  "devDependencies": {
+    "gulp-babel": "~6.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kinja-js-class/katapotter-4.git"
+  }
+}
