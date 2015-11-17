@@ -15,7 +15,7 @@ gulp.task("testtoes5", function () {
 		.pipe(gulp.dest("spec/es5"))
 });
 
-gulp.task("test", ["testtoes5"], function () {
+gulp.task("test", ["default", "testtoes5"], function () {
     return gulp.src('spec/es5/test.js')
         // gulp-jasmine works on filepaths so you can't have any plugins before it 
         .pipe(jasmine());
