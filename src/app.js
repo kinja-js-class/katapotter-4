@@ -1,11 +1,21 @@
-let book = {
-	'price': 8
+let books = [ 
+	{price: 8}, 
+	{price: 8}, 
+	{price: 8}, 
+	{price: 8}, 
+	{price: 8}
+];
+
+let discounts = {
+        1: 1,
+        2: 0.95,
+        3: 0.90,
+        4: 0.80,
+        5: 0.75
+    }
+
+let priceCalculator = (books) => {
+	return books.reduce((previous, current) => previous + current.price, 0);
 };
 
-let person = {
-	'name': 'Kata'
-}
-
-
-// why does not it work without "default" when several named values are listed?
-export { person, book };
+export { books, discounts, priceCalculator };
