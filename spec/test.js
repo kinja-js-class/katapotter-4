@@ -1,5 +1,5 @@
 //this is a check that tests that one book costs €8
-import book from '../../dist/app';
+import kata, book from '../../dist/app';
 
 // given _ when _ then
 describe("A books", () => {
