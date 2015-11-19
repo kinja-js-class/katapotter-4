@@ -15,7 +15,7 @@ let discounts = {
     }
 
 let priceCalculator = (books) => {
-	return books.reduce((previous, current) => previous + current.price, 0);
+	return books.reduce((previous, current) => previous + current.price, 0) * discounts[books.length];
 };
 
 export { books, discounts, priceCalculator };
