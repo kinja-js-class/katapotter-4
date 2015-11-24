@@ -27,6 +27,22 @@ describe('priceCalculator', () => {
 		];
 		expect(priceCalculator(cart)).toBe(16 * 0.95);
 	});
+	it('Buying 3 different costs 24 * 0.9', () => {
+		let cart = [
+			{isbn: '1', price: 8},
+			{isbn: '2', price: 8},
+			{isbn: '3', price: 8},
+		];
+		expect(priceCalculator(cart)).toBe(24 * 0.9);
+	});
+	it('Buying 3 of the same books costs 24', () => {
+		let cart = [
+			{isbn: '1', price: 8},
+			{isbn: '1', price: 8},
+			{isbn: '1', price: 8}
+		];
+		expect(priceCalculator(cart)).toBe(24);
+	});
 })
 
 
