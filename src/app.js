@@ -10,11 +10,14 @@ let discounts = {
 
 let priceCalculator = (cart) => {
 	if (cart) {
-		if (_.uniq(_.pluck(cart, 'isbn')).length === 1 ) {
-			return 8 * cart.length;
-		} else {
-			return 8 * cart.length * discounts[cart.length]
-		}
+		// step 1: calculate number of different books
+		let differentBooks = _.countBy(cart, (book) => book.isbn )
+		let numberOfDifferentBooks= Object.keys(differentBooks).length;
+		let discountedPrice = 8 * discounts[numberOfDifferentBooks] * numberOfDifferentBooks;
+		// step 2: price the rest at 8 each
+		let finalPrice = discountedPrice + (cart.length - numberOfDifferentBooks) * 8;
+
+		return finalPrice;
 	} else {
 		return 0;
 	}
