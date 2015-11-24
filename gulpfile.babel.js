@@ -20,3 +20,7 @@ gulp.task("test", ["default", "testtoes5"], () => {
         // gulp-jasmine works on filepaths so you can't have any plugins before it
         .pipe(jasmine());
 });
+
+gulp.task("watch", () => {
+	return gulp.watch(['src/*.js', 'spec/*.js'], ['test']);
+});
