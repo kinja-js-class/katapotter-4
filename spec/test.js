@@ -43,6 +43,25 @@ describe('priceCalculator', () => {
 		];
 		expect(priceCalculator(cart)).toBe(24);
 	});
+	it('Buying 4 different costs 4 * 8 * 0.80', () => {
+		let cart = [
+			{isbn: '1', price: 8},
+			{isbn: '2', price: 8},
+			{isbn: '3', price: 8},
+			{isbn: '4', price: 8}
+		];
+		expect(priceCalculator(cart)).toBe(4 * 8 * 0.80);
+	});
+	it('Buying 5 different costs 5 * 8 * 0.75', () => {
+		let cart = [
+			{isbn: '1', price: 8},
+			{isbn: '2', price: 8},
+			{isbn: '3', price: 8},
+			{isbn: '4', price: 8},
+			{isbn: '5', price: 8}
+		];
+		expect(priceCalculator(cart)).toBe(5 * 8 * 0.75);
+	});
 })
 
 
