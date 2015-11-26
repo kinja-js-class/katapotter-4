@@ -23,4 +23,5 @@ let priceCalculator = (cart) => {
 	}
 };
 
+
 export {priceCalculator}

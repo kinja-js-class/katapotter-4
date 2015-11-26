@@ -69,6 +69,16 @@ describe('priceCalculator', () => {
 			{isbn: '2', price: 8},
 		];
 		expect(priceCalculator(cart)).toBe(8 * 0.95 * 2 + 8);
+	});
+	it('should give the highest discount', () => {
+		let cart = [
+			{isbn: '1', price: 8},
+			{isbn: '1', price: 8},
+			{isbn: '2', price: 8},
+			{isbn: '2', price: 8},
+			{isbn: '3', price: 8},
+		];
+		expect(priceCalculator(cart)).toBe(8 + 16 * 0.90 + 16 * 0.9);
 	})
 })
 
