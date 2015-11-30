@@ -116,6 +116,6 @@ describe('priceCalculator', () => {
 		];
 		expect(priceCalculator(cart)).toBe(3 * (8 * 5 * 0.75) + 2 * (8 * 4 * 0.8));
 	});
-})
+});
 
 

@@ -40,8 +40,10 @@ let priceCalculator = (cart) => {
 
 			if (maxPossibleNumberOfUniqueColumns !== 0) {
 				uniqueColumnsPrice = (maxPossibleNumberOfFullRows + 1) * 8 * maxPossibleNumberOfUniqueColumns * discounts[(maxPossibleNumberOfFullRows + 1)];
-			} else {
+			} else if (maxPossibleNumberOfUniqueColumns === 0) {
 				uniqueColumnsPrice = 0;
+			} else if (maxPossibleNumberOfUniqueColumns > 5) {
+				uniqueColumnsPrice = (maxPossibleNumberOfFullRows + 1) * 8 * maxPossibleNumberOfUniqueColumns * discounts[5];
 			}
 
 			leftoverColumnsPrice = maxPossibleNumberOfFullRows * 8 * (maxBookNumberPerRow - maxPossibleNumberOfUniqueColumns)*discounts[(maxPossibleNumberOfFullRows)];
