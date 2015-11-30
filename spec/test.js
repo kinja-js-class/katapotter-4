@@ -1,4 +1,4 @@
-import {priceCalculator, getUniqueSets} from '../../dist/app';
+import {priceCalculator} from '../../dist/app';
 
 describe('priceCalculator', () => {
 	it('Buying nothing costs 0', () => {
