@@ -1,4 +1,4 @@
-import {priceCalculator} from '../../dist/app';
+import {priceCalculator, getUniqueSets} from '../../dist/app';
 
 describe('priceCalculator', () => {
 	// it('Buying nothing costs 0', () => {
@@ -11,14 +11,18 @@ describe('priceCalculator', () => {
 	// 	}];
 	// 	expect(priceCalculator(cart)).toBe(8);
 	// });
-	it('Buying 2 of the same book costs 16', () => {
-		let cart = [
-			{isbn: '1'},
-			{isbn: '1'}
-		];
-		priceCalculator(cart);
-		//expect(priceCalculator(cart)).toBe(16);
-	});
+
+	// it('Buying 2 of the same book costs 16', () => {
+	// 	let cart = [
+	// 		{isbn: 'book1'},
+	// 		{isbn: 'book1'}
+	// 	];
+
+	// 	//expect(getUniqueSets(cart)).toEqual([[{isbn: 1}], [{isbn: 1}]]);
+	// 	priceCalculator(cart);
+	// 	//expect(priceCalculator(cart)).toBe(16);
+	// });
+
 	// it('Buying 2 different costs 16 * 0.95', () => {
 	// 	let cart = [
 	// 		{isbn: '1'},
@@ -79,6 +83,7 @@ describe('priceCalculator', () => {
 	// 	];
 	// 	expect(priceCalculator(cart)).toBe(8 + 16 * 0.90 + 16 * 0.9);
 	// });
+
 	// it('should give the highest discount', () => {
 	// 	let cart = [
 	// 		{isbn: '1'},

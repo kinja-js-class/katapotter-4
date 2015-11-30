@@ -1,3 +1,5 @@
+'use strict';
+
 import _ from 'underscore';
 
 let discounts = {
@@ -6,39 +8,43 @@ let discounts = {
 	3: 0.9,
 	4: 0.8,
 	5: 0.75
-}
+};
+
 
 let priceCalculator = (cart) => {
-	if (cart) {
+	let groupedByIsbn,
+		totalNumberOfIsbn,
+		totalNumberOfBooks = 0,
+		maxBookNumberPerRow,
+		maxPossibleNumberOfFullRows,
+		numberOfBooksInFullRows,
+		maxPossibleNumberOfUniqueColumns,
+		totalPrice;
 
-		let finalPrice = 0;
-		let groupedByIsbn = _.toArray(_.groupBy(cart, 'isbn'));
-		let numberOfIsbns = groupedByIsbn.length;
-		let uniqueSets = [];
-		let interatee = [];
+		if (cart) {
+			groupedByIsbn = _.sortBy(_.toArray(_.groupBy(cart, 'isbn'), 'length'));
+			totalNumberOfIsbn = groupedByIsbn.length;
+			maxBookNumberPerRow = _.last(groupedByIsbn).length;
 
-		for (var i = 0; i < numberOfIsbns; i++) {
-			for (var j = 0; j < numberOfIsbns; j++) {
-				if (groupedByIsbn[j][i]) {
-					interatee.push(groupedByIsbn[j][i]);
-				}
-			}
-			uniqueSets.push(interatee);
-			interatee = [];
+			_.each(groupedByIsbn, (book) => {
+				totalNumberOfBooks += book.length; 
+			});
+
+			maxPossibleNumberOfFullRows = Math.floor(totalNumberOfBooks / maxBookNumberPerRow);
+
+			numberOfBooksInFullRows = maxPossibleNumberOfFullRows * maxBookNumberPerRow;
+
+			maxPossibleNumberOfUniqueColumns = totalNumberOfBooks - numberOfBooksInFullRows;
+
+			totalPrice = ((maxPossibleNumberOfFullRows + 1) * 8 * maxPossibleNumberOfUniqueColumns * discounts[(maxPossibleNumberOfFullRows + 1)]) +
+				(maxPossibleNumberOfFullRows * 8 * (maxBookNumberPerRow - maxPossibleNumberOfUniqueColumns)*discounts[(maxPossibleNumberOfFullRows)]);
+
+			console.log(totalPrice);
+
+			return totalPrice;
+		} else {
+			return 0;
 		}
-
-		console.log(uniqueSets);
-
-		_.each(uniqueSets, (set) => {
-			finalPrice += set.length * 8 * discounts[set.length];
-			console.log(set);
-		});
-
-		return finalPrice;
-
-	} else {
-		return 0;
-	}
 };
 
 
