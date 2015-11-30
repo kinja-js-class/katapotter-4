@@ -39,8 +39,6 @@ let priceCalculator = (cart) => {
 			totalPrice = ((maxPossibleNumberOfFullRows + 1) * 8 * maxPossibleNumberOfUniqueColumns * discounts[(maxPossibleNumberOfFullRows + 1)]) +
 				(maxPossibleNumberOfFullRows * 8 * (maxBookNumberPerRow - maxPossibleNumberOfUniqueColumns)*discounts[(maxPossibleNumberOfFullRows)]);
 
-			console.log(totalPrice);
-
 			return totalPrice;
 		} else {
 			return 0;
@@ -48,4 +46,4 @@ let priceCalculator = (cart) => {
 };
 
 
-export {priceCalculator}
+export {priceCalculator};
