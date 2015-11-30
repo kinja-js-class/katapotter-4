@@ -10,14 +10,32 @@ let discounts = {
 
 let priceCalculator = (cart) => {
 	if (cart) {
-		// step 1: calculate number of different books
-		let differentBooks = _.countBy(cart, (book) => book.isbn )
-		let numberOfDifferentBooks= Object.keys(differentBooks).length;
-		let discountedPrice = 8 * discounts[numberOfDifferentBooks] * numberOfDifferentBooks;
-		// step 2: price the rest at 8 each
-		let finalPrice = discountedPrice + (cart.length - numberOfDifferentBooks) * 8;
+
+		let finalPrice = 0;
+		let groupedByIsbn = _.toArray(_.groupBy(cart, 'isbn'));
+		let numberOfIsbns = groupedByIsbn.length;
+		let uniqueSets = [];
+		let interatee = [];
+
+		for (var i = 0; i < numberOfIsbns; i++) {
+			for (var j = 0; j < numberOfIsbns; j++) {
+				if (groupedByIsbn[j][i]) {
+					interatee.push(groupedByIsbn[j][i]);
+				}
+			}
+			uniqueSets.push(interatee);
+			interatee = [];
+		}
+
+		console.log(uniqueSets);
+
+		_.each(uniqueSets, (set) => {
+			finalPrice += set.length * 8 * discounts[set.length];
+			console.log(set);
+		});
 
 		return finalPrice;
+
 	} else {
 		return 0;
 	}
