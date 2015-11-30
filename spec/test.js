@@ -1,9 +1,9 @@
 import {priceCalculator, getUniqueSets} from '../../dist/app';
 
 describe('priceCalculator', () => {
-	// it('Buying nothing costs 0', () => {
-	// 	expect(priceCalculator()).toBe(0);
-	// });
+	it('Buying nothing costs 0', () => {
+		expect(priceCalculator()).toBe(0);
+	});
 
 	// it('Buying 1 book costs 8', () => {
 	// 	let cart = [{
@@ -84,36 +84,36 @@ describe('priceCalculator', () => {
 	// 	expect(priceCalculator(cart)).toBe(8 + 16 * 0.90 + 16 * 0.9);
 	// });
 
-	// it('should give the highest discount', () => {
-	// 	let cart = [
-	// 		{isbn: '1'},
-	// 		{isbn: '1'},
-	// 		{isbn: '1'},
-	// 		{isbn: '1'},
-	// 		{isbn: '1'},
-	// 		{isbn: '2'},
-	// 		{isbn: '2'},
-	// 		{isbn: '2'},
-	// 		{isbn: '2'},
-	// 		{isbn: '2'},
-	// 		{isbn: '3'},
-	// 		{isbn: '3'},
-	// 		{isbn: '3'},
-	// 		{isbn: '3'},
-	// 		{isbn: '4'},
-	// 		{isbn: '4'},
-	// 		{isbn: '4'},
-	// 		{isbn: '4'},
-	// 		{isbn: '4'},
-	// 		{isbn: '5'},
-	// 		{isbn: '5'},
-	// 		{isbn: '5'},
-	// 		{isbn: '5'}
-	// 	];
-	// 	//141.2
-	// 	priceCalculator(cart);
-	// 	//expect(priceCalculator(cart)).toBe(8 + 16 * 0.90 + 16 * 0.9);
-	// });
+	it('should give the highest discount', () => {
+		let cart = [
+			{isbn: '1'},
+			{isbn: '1'},
+			{isbn: '1'},
+			{isbn: '1'},
+			{isbn: '1'},
+			{isbn: '2'},
+			{isbn: '2'},
+			{isbn: '2'},
+			{isbn: '2'},
+			{isbn: '2'},
+			{isbn: '3'},
+			{isbn: '3'},
+			{isbn: '3'},
+			{isbn: '3'},
+			{isbn: '4'},
+			{isbn: '4'},
+			{isbn: '4'},
+			{isbn: '4'},
+			{isbn: '4'},
+			{isbn: '5'},
+			{isbn: '5'},
+			{isbn: '5'},
+			{isbn: '5'}
+		];
+		//141.2
+		priceCalculator(cart);
+		//expect(priceCalculator(cart)).toBe(8 + 16 * 0.90 + 16 * 0.9);
+	});
 })
 
 
