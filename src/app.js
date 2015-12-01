@@ -1,3 +1,5 @@
+'use strict';
+
 import _ from 'underscore';
 
 let discounts = {
@@ -6,22 +8,53 @@ let discounts = {
 	3: 0.9,
 	4: 0.8,
 	5: 0.75
-}
-
-let priceCalculator = (cart) => {
-	if (cart) {
-		// step 1: calculate number of different books
-		let differentBooks = _.countBy(cart, (book) => book.isbn )
-		let numberOfDifferentBooks= Object.keys(differentBooks).length;
-		let discountedPrice = 8 * discounts[numberOfDifferentBooks] * numberOfDifferentBooks;
-		// step 2: price the rest at 8 each
-		let finalPrice = discountedPrice + (cart.length - numberOfDifferentBooks) * 8;
-
-		return finalPrice;
-	} else {
-		return 0;
-	}
 };
 
 
-export {priceCalculator}
+let priceCalculator = (cart) => {
+	let groupedByIsbn,
+		totalNumberOfIsbn,
+		totalNumberOfBooks = 0,
+		maxBookNumberPerRow,
+		maxPossibleNumberOfFullRows,
+		numberOfBooksInFullRows,
+		maxPossibleNumberOfUniqueColumns,
+		uniqueColumnsPrice,
+		leftoverColumnsPrice,
+		totalPrice;
+
+		if (cart) {
+			groupedByIsbn = _.sortBy(_.toArray(_.groupBy(cart, 'isbn'), 'length'));
+			totalNumberOfIsbn = groupedByIsbn.length;
+			maxBookNumberPerRow = _.last(groupedByIsbn).length;
+
+			_.each(groupedByIsbn, (book) => {
+				totalNumberOfBooks += book.length; 
+			});
+
+			maxPossibleNumberOfFullRows = Math.floor(totalNumberOfBooks / maxBookNumberPerRow);
+
+			numberOfBooksInFullRows = maxPossibleNumberOfFullRows * maxBookNumberPerRow;
+
+			maxPossibleNumberOfUniqueColumns = totalNumberOfBooks - numberOfBooksInFullRows;
+
+			if (maxPossibleNumberOfUniqueColumns !== 0) {
+				uniqueColumnsPrice = (maxPossibleNumberOfFullRows + 1) * 8 * maxPossibleNumberOfUniqueColumns * discounts[(maxPossibleNumberOfFullRows + 1)];
+			} else if (maxPossibleNumberOfUniqueColumns > 5) {
+				uniqueColumnsPrice = (maxPossibleNumberOfFullRows + 1) * 8 * maxPossibleNumberOfUniqueColumns * discounts[5];
+			} else {
+				uniqueColumnsPrice = 0;
+			}
+
+			leftoverColumnsPrice = maxPossibleNumberOfFullRows * 8 * (maxBookNumberPerRow - maxPossibleNumberOfUniqueColumns)*discounts[(maxPossibleNumberOfFullRows)];
+
+			totalPrice = uniqueColumnsPrice + leftoverColumnsPrice;
+
+			return totalPrice;
+		} else {
+			return 0;
+		}
+};
+
+
+export {priceCalculator};
